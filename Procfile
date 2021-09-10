@@ -1,1 +1,1 @@
-worker: /bin/wanikanileechsuspender
+worker: ./bin/wanikanileechsuspender
