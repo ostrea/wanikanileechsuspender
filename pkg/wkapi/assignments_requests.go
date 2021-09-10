@@ -27,6 +27,23 @@ func GetBurnedSubjectIds() map[int]struct{} {
 	return allBurnedAssignmentIds
 }
 
+func GetCurrentlyAvailableForReviewIds() []int {
+	var allAvailable []jsonstructs.Assignment
+	availableJson, nextUrl := getPage(baseApiUrl + "/assignments?immediately_available_for_review=true")
+	allAvailable = append(allAvailable, extractAssignmentFromPage(availableJson)...)
+
+	for nextUrl != nil {
+		availableJson, nextUrl = getPage(*nextUrl)
+		allAvailable = append(allAvailable, extractAssignmentFromPage(availableJson)...)
+	}
+
+	allAvailableIds := make([]int, len(allAvailable))
+	for i, assignment := range allAvailable {
+		allAvailableIds[i] = assignment.SubjectId
+	}
+	return allAvailableIds
+}
+
 func extractAssignmentFromPage(subjectStatsJson []byte) []jsonstructs.Assignment {
 	var parsedJson jsonstructs.AssignmentResponse
 	err := json.Unmarshal(subjectStatsJson, &parsedJson)

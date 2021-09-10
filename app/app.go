@@ -55,5 +55,11 @@ func Run() {
 	}
 
 	database.SaveLeeches(db, leechSubjects)
+
+	currentlyAvailableForReviewIds := wkapi.GetCurrentlyAvailableForReviewIds()
+	var leechIdsInReview []int
+	db.Model(&database.Leech{}).Where("subject_id IN ?", currentlyAvailableForReviewIds).Pluck("subject_id", &leechIdsInReview)
+	wkapi.CreateReviews(leechIdsInReview)
+
 	log.Println("Leech suspension ended.")
 }
