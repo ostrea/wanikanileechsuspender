@@ -11,7 +11,7 @@ import (
 )
 
 func Run() {
-	log.Println("Leach suspension started.")
+	log.Println("Leech suspension started.")
 	var leechIds []int
 
 	allSubjectStats := wkapi.GetAllSubjectStats()
@@ -55,5 +55,5 @@ func Run() {
 	}
 
 	database.SaveLeeches(db, leechSubjects)
-	log.Println("Leach suspension ended.")
+	log.Println("Leech suspension ended.")
 }
