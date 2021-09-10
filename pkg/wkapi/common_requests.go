@@ -29,6 +29,11 @@ func getPage(url string) ([]byte, *string) {
 	}(response.Body)
 
 	data, _ := ioutil.ReadAll(response.Body)
+
+	if response.StatusCode != http.StatusOK {
+		log.Fatalf("Error non 200 response from wk api. Status code: %v, response data: %v", response.StatusCode, string(data))
+	}
+
 	var parsedJson jsonstructs.BaseCollection
 	err = json.Unmarshal(data, &parsedJson)
 	if err != nil {
