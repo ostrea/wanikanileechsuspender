@@ -12,7 +12,7 @@ import (
 )
 
 func CreateReviews(ids []int) {
-	for _, id := range ids[:1] {
+	for _, id := range ids {
 		newReview := jsonstructs.Review{
 			SubjectId:               id,
 			IncorrectMeaningAnswers: 0,
