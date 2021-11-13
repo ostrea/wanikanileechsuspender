@@ -17,7 +17,7 @@ func Run() {
 	allSubjectStats := wkapi.GetAllSubjectStats()
 	burnedSubjectIds := wkapi.GetBurnedSubjectIds()
 	for _, subject := range allSubjectStats {
-		if subject.SubjectType != "vocabulary" {
+		if subject.SubjectType == "kanji" {
 			continue
 		}
 
