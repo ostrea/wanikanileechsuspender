@@ -21,7 +21,7 @@ func Run() {
 			continue
 		}
 
-		// Some kanji moved beyond current level, and have 0 in streak.
+		// Some subjects moved beyond current level, and have 0 in streak.
 		// They were unlocked ages ago, so they have an entry in stats.
 		if subject.MeaningCurrentStreak == 0 {
 			continue
